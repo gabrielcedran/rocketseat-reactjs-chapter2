@@ -10,4 +10,60 @@ _Babel and webpack (and other) configurations are not stored directly in the pro
 
 *** there are some tools that allow customisation to a certain degree not having to eject. But there could still be situations where ejecting is necessary to due the level of customisation needed.
 
+## CSS in JS
+
+CSS in JS is a strategy where javascript is used to style components. It can either inject styles into the DOM at runtime or using the CSSStyleSheet API. For this project `styled components` is going to be used - but there are other options out there like `emotion`, `tailwind`, etc.
+
+Start by including the dependency (`yarn add styled-components`) and it's types module (`yarn add -D @types/styled-components`).
+Afterwards install styled-components extension to have syntax highlight and auto-complete when defining new components (`vscode-styled-components`).
+
+One of the advantages of using CSS in JS is the fact that styles are contained within its component (scoped css) - you won't have styles of one component causing side-effect in another like classes could do.
+
+#### Comparing regular css with styled components:
+
+Regular CSS (pre-processors like sass would be very similar):
+
+```
+// When using regular css, we would have to create a css file with its styles and then import it in the relevant js file:
+
+// App.css
+.title {
+    font-size: 64px;
+    color: #8257e6;
+}
+
+// App.tsx
+import './App.css';
+
+export function App() {
+  return (
+    <div className="App">
+      <h1 className="title">Hello World!</h1>
+    </div>
+  );
+}
+
+```
+
+CSS in JS example (styled components):
+
+```
+// when using styled components we create components that are already styled - we do not use className
+
+import styled from 'styled-components';
+
+const Title = styled.h1`
+  font-size: 64px;
+  color: #8257e6;
+  
+`
+export function App() {
+  return (
+    <div className="App">
+      <Title>Hello World!</Title>
+    </div>
+  );
+}
+```
+
 
