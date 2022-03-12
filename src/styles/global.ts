@@ -37,6 +37,15 @@ export const GlobalStyle = createGlobalStyle`
         -webkit-font-smoothing: antialiased; // hack to make browsers that use chrome engine (webkit) to render fonts smoother (on the level of pixel instead of subpixel) 
     }
 
+    body, input, textarea, button { // by default input, textarea and button do not inherit the body's font
+        font-family: 'Poppins', sans-serif;
+        font-weight: 400; // html's default font weight is usually 500
+    }
+    
+    h1, h2, h3, h4, h5, h6, strong {
+        font-weight: 600;
+    }
+
     button {
         cursor: pointer;
     }    
