@@ -93,3 +93,10 @@ Once the default font size of the application is defined, it is good to use the 
 
 
 
+### why using axios instead of fetch
+
+Among other reasons:
+
+- Fetch requires the whole URL (and namespace) to be provided every time
+- Fetch requires two steps in order to extract the response body (it would be possible to create an abstraction however using an abstraction that is widely used by the community is more reliable)
+- Axios allows to easily intercept and manipulate requests and responses (e.g in case the server return 401, redirect the client to login page)
