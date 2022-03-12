@@ -66,4 +66,30 @@ export function App() {
 }
 ```
 
+## Notes
+
+### Accessibility (a11y)
+
+By default browsers set the font-size to 16px - which is ideal for desktop. When changing font and component sizes it is recommended (and good practice) to use a relative unit (like `percentage`, `rem` or `em`) rather than fixed ones (like `px`) because in case the user increases or decreases the default font size of their browser the UI will adjust according to their needs instead of forcing a specific one (somebody with visual impairment might want to zoom in and forcing a pre-determined size would not be nice).
+
+Example: setting up the app's default font size for devices that have smaller resolutions:
+
+```
+    // the default font-size is 16px
+    html {
+        @media (max-width: 1080px) {
+            font-size: 93.75%; // 93.75% of 16px this 15px - if we forced 15px users could not change it in case they needed
+        }
+
+        @media (max-width: 720px) {
+            font-size: 87.5%; // 87.5% of 16px this 14px
+        }
+    }
+```
+
+Once the default font size of the application is defined, it is good to use the unit `rem` (or `em`) to define components sizes (like divs). 1 rem is equals the size of the default font size - in the case above, any device bigger than 1080px, 1 rem = 16px. For devices up to 1080px, 15px. For devices up to 720px, 15px. It also favours better responsive pages.
+
+`rem` is related to the html default font size. `em` to its parent element.
+
+
 
