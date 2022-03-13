@@ -100,3 +100,48 @@ Among other reasons:
 - Fetch requires the whole URL (and namespace) to be provided every time
 - Fetch requires two steps in order to extract the response body (it would be possible to create an abstraction however using an abstraction that is widely used by the community is more reliable)
 - Axios allows to easily intercept and manipulate requests and responses (e.g in case the server return 401, redirect the client to login page)
+
+### react-modal
+
+Instead of developing our own modal it is easier and better to use the lib `react-modal` that is maintained by the community and is part of the community reactjs github.
+
+It implements a bunch of functionalities and good practices that should be applied when working with modals - including a11y.
+
+- `yarn add react-modal`
+
+
+### Polished lib
+
+When using a css in js, for obvious reasons it is possible to use js functions to manipulate the css (like colours, etc). Polished lib has a bunch of helpers to modify colours.
+
+Example without polished to change the border-colour on mouse hover:
+
+```
+button {
+    border: 1px solid #d7d7d7;
+
+    transition: border-color 0.2s;
+    
+    &:hover {
+        border-color: #fff; // in this case filter with brightness wouldn't work as it would change the whole component colour not only the border
+    }
+}
+```
+
+Example with polished:
+
+```
+import { darken } from "polished";
+...
+button {
+    border: 1px solid #d7d7d7;
+
+    transition: border-color 0.2s;
+
+    &:hover {
+        border-color: ${darken(0.1, '#d7d7d7')}; // darkens the colour in 10%
+    }
+}
+```
+
+Adding the dependency `yarn add polished`
