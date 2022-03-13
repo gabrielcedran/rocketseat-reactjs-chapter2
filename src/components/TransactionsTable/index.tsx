@@ -8,7 +8,7 @@ type Transaction = {
     amount: number;
     category: string;
     transactionType: string;
-    createdAt: Date;
+    createdAt: string;
 }
 
 export function TransactionsTable() {
@@ -38,9 +38,17 @@ export function TransactionsTable() {
                     {transactions.map(transaction => (
                         <tr key={transaction.id}>
                             <td>{transaction.description}</td>
-                            <td className={transaction.transactionType}>R$ {transaction.amount}</td>
+                            { // new Intl.NumberFormat('en-GB')  or new Intl.NumberFormat(Intl.DateTimeFormat().resolvedOptions().locale) for i18n
+                            }
+                            <td className={transaction.transactionType}>
+                                {new Intl.NumberFormat(Intl.DateTimeFormat().resolvedOptions().locale, {style: 'currency', currency: 'BRL'}).format(transaction.amount)}
+                            </td>
                             <td>{transaction.category}</td>
-                            <td>{transaction.createdAt}</td>
+                            <td>
+                            {// new Intl.DateTimeFormat('pt-BR')
+                            }
+                            {new Intl.DateTimeFormat().format(new Date(transaction.createdAt))}
+                            </td>
                         </tr>
                     ))
                     }
